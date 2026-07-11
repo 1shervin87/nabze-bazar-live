@@ -17,4 +17,5 @@ jobs:
         env:
           SITES_TOKEN: ${{ secrets.SITES_TOKEN }}
           SITES_REMOTE: ${{ secrets.SITES_REMOTE }}
-        run: git -c http.extraHeader="Authorization: Bearer ${SITES_TOKEN}" push --force "${SITES_REMOTE}" HEAD:main
+        run: |
+          git -c http.extraHeader="Authorization: Bearer ${SITES_TOKEN}" push --force "${SITES_REMOTE}" HEAD:main
