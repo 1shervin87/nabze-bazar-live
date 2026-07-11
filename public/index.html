@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="نبض بازار؛ داشبورد آموزشی تحلیل بازار و مدیریت ریسک">
+  <title>نبض بازار | داشبورد تحلیل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="risk-banner" role="status">
+    <span class="live-dot"></span>
+    <strong>حالت آزمایشی</strong>
+    <span>داده بازار واقعی/تأخیردار مطابق وضعیت هر بورس؛ قبل از معامله مستقلاً بررسی کنید.</span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="نبض بازار، صفحه اصلی">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><b>نبض</b> بازار</span>
+    </a>
+    <nav aria-label="ناوبری اصلی">
+      <a class="active" href="#dashboard">داشبورد</a>
+      <a href="#signals">سیگنال‌ها</a>
+      <a href="#risk">مدیریت ریسک</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="themeToggle" aria-label="تغییر پوسته">☼</button>
+      <button class="notify-button" id="notifyButton"><span>فعال‌سازی اعلان</span><b>◉</b></button>
+    </div>
+  </header>
+
+  <main id="dashboard">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span></span>تحلیل چندبازاری، یک‌جا</div>
+        <h1>بازار را ببین.<br><em>با برنامه</em> تصمیم بگیر.</h1>
+        <p>سیگنال‌های قابل‌فهم با نقطه ورود، حد ضرر، اهداف مرحله‌ای و اندازه پوزیشن پیشنهادی.</p>
+      </div>
+      <div class="market-status">
+        <div><span>وضعیت موتور</span><b><i></i> در حال پایش</b></div>
+        <div><span>آخرین بروزرسانی</span><b id="lastUpdate">همین حالا</b></div>
+      </div>
+    </section>
+
+    <section class="ticker-wrap" aria-label="قیمت‌های بازار">
+      <div class="ticker" id="ticker"></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="workspace-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">نبض لحظه‌ای</span>
+            <h2 id="assetTitle">بیت‌کوین / تتر</h2>
+          </div>
+          <div class="asset-price"><strong id="assetPrice">—</strong><span id="assetChange">در حال دریافت</span></div>
+        </div>
+
+        <div class="asset-tabs" id="assetTabs" role="tablist" aria-label="انتخاب دارایی"></div>
+
+        <div class="chart-toolbar">
+          <div class="timeframes" id="timeframes">
+            <button data-frame="1m">۱د</button><button data-frame="5m">۵د</button><button class="active" data-frame="15m">۱۵د</button><button data-frame="1h">۱س</button><button data-frame="4h">۴س</button>
+          </div>
+          <span id="dataMode"><i></i> داده واقعی بازار</span>
+        </div>
+
+        <div class="chart-box">
+          <canvas id="marketChart" aria-label="نمودار واقعی قیمت"></canvas><div class="chart-tooltip" id="chartTooltip"></div>
+        </div>
+
+        <div class="indicator-row"><div><span>RSI (14)</span><b id="rsiValue">—</b><small id="rsiState">در حال محاسبه</small></div><div><span>روند EMA</span><b id="emaValue">—</b><small id="emaState">EMA9 / EMA21</small></div><div><span>نوسان ATR</span><b id="volatilityValue">—</b><small>مبنای حد ضرر</small></div><div><span>وضعیت</span><b id="connectionValue">در حال اتصال</b><small id="connectionState">داده واقعی بازار</small></div></div>
+      </div>
+
+      <aside class="signal-column" id="signals">
+        <div class="panel-heading compact">
+          <div><span class="section-kicker">جریان زنده</span><h2>سیگنال‌ها</h2></div>
+          <button class="filter-button" id="filterButton" aria-label="فیلتر سیگنال‌ها">همه بازارها⌄</button>
+        </div>
+        <div class="signal-feed" id="signalFeed" aria-live="polite"></div>
+      </aside>
+    </section>
+
+    <section class="risk-section" id="risk">
+      <div class="risk-copy">
+        <span class="section-kicker">قبل از ورود</span>
+        <h2>ریسک را به عدد تبدیل کن.</h2>
+        <p>مقدار سرمایه و درصد ریسک مجاز را وارد کن تا سقف اندازه پوزیشن پیشنهادی محاسبه شود.</p>
+        <div class="risk-rules">
+          <span><b>۱٪</b> ریسک پیشنهادی هر معامله</span>
+          <span><b>۱:۲</b> حداقل نسبت سود به زیان</span>
+        </div>
+      </div>
+      <form class="risk-calculator" id="riskForm">
+        <label>سرمایه حساب (دلار)<input id="capitalInput" type="number" min="10" value="5000"></label>
+        <label>ریسک هر معامله<input id="riskInput" type="range" min="0.25" max="3" step="0.25" value="1"><output id="riskOutput">۱٪</output></label>
+        <label>فاصله حد ضرر (%)<input id="stopInput" type="number" min="0.1" max="50" step="0.1" value="2"></label>
+        <div class="risk-result"><span>حداکثر اندازه پوزیشن</span><strong id="positionSize">۲٬۵۰۰ دلار</strong><small id="riskAmount">ریسک واقعی: ۵۰ دلار</small></div>
+      </form>
+    </section>
+  </main>
+
+  <div class="toast-stack" id="toastStack" aria-live="assertive"></div>
+
+  <dialog id="signalDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="بستن">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <footer>
+    <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span><span><b>نبض</b> بازار</span></div>
+    <p>ابزار آموزشی تحلیل تکنیکال — نه توصیه مالی یا تضمین سود.</p>
+    <span>نسخه ۰.۱ آزمایشی</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
