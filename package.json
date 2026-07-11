@@ -1,0 +1,22 @@
+{
+  "name": "nabze-bazar-live",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build && node scripts/build-worker.mjs && mkdir -p dist/.openai && cp .openai/hosting.json dist/.openai/hosting.json",
+    "start": "vinext start"
+  },
+  "dependencies": {
+    "next": "^16.1.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-server-dom-webpack": "^19.2.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "@vitejs/plugin-rsc": "latest",
+    "vinext": "0.0.49",
+    "vite": "^8.0.0"
+  }
+}
