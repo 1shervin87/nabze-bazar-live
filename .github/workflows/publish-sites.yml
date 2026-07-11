@@ -1,0 +1,20 @@
+name: Publish to live site source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push source to hosting repository
+        env:
+          SITES_TOKEN: ${{ secrets.SITES_TOKEN }}
+          SITES_REMOTE: ${{ secrets.SITES_REMOTE }}
+        run: git -c http.extraHeader="Authorization: Bearer ${SITES_TOKEN}" push --force "${SITES_REMOTE}" HEAD:main
